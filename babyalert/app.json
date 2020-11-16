@@ -1,0 +1,12 @@
+{
+  "name": "babyalert",
+  "displayName": "babyalert",
+  "expo": {
+    "name": "babyalert",
+    "slug": "babyalert",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
