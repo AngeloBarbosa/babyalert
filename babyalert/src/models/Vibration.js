@@ -1,6 +1,6 @@
 import {Vibration} from 'react-native';
 
-class Vibraton {
+export class Vibrator {
     constructor() {
         const vibe = Vibration;
         const ONE_SECOND_IN_MS = 1000;

@@ -2,11 +2,11 @@ import * as React from 'react';
 import { View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Flash, Sound, Vibration} from '../src/models';
+import { SoundAlert } from './models/Sound';
+import { Vibrator } from './models/Vibration';
 
-
-const vibe = new Vibration();
-const sound = new Sound();
+const vibe = new Vibrator();
+const sound = new SoundAlert();
 
 function turnSignalsOn() {
 	sound.play();
