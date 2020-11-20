@@ -5,6 +5,7 @@ class Sound {
 
     constructor() {
         const sound = new Audio.Sound();
+        sound.load();
         loaded = false;
         playing = false;
         stopped = true;
@@ -12,8 +13,10 @@ class Sound {
 
     async load(path = '../assets/sounds/el_carnaval_de_arlequin.mp3') {
         await sound.loadAsync(require(path));
-        if (!loaded) loaded = true;
-        stopped = true
+        if (!loaded) {
+            loaded = true;
+            stopped = true;
+        }
     }
 
     async play() {

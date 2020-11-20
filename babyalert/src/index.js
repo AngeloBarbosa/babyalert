@@ -2,12 +2,29 @@ import * as React from 'react';
 import { View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Flash, Sound, Vibration} from '../src/models';
+
+
+const vibe = new Vibration();
+const sound = new Sound();
+
+function turnSignalsOn() {
+	sound.play();
+	vibe.vibratePatternUntilCancel();
+}
+
+function turnSignalsOff() {
+	sound.pause();
+	vibe.cancel();
+}
 
 function HomeScreen({ navigation }) {
   return (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
     <Text>Home Screen</Text>
-    <Button title="Configurations" onPress={() => navigation.navigate('Configurations')}/>
+    <Button title="Settings" onPress={() => navigation.navigate('Configurations')}/>
+    <Button title='Alert on' onPress={() => turnSignalsOn()}></Button>
+    <Button title='Alert off' onPress={() => turnSignalsOff()}></Button>
   </View>
   );
 }
@@ -36,5 +53,7 @@ function App() {
     </NavigationContainer>
   );
 }
+
+
 
 export default App;
