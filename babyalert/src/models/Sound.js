@@ -5,25 +5,46 @@ class Sound {
 
     constructor() {
         const sound = new Audio.Sound();
+        loaded = false;
+        playing = false;
+        stopped = true;
     }
 
     async load(path = '../assets/sounds/el_carnaval_de_arlequin.mp3') {
         await sound.loadAsync(require(path));
+        if (!loaded) loaded = true;
+        stopped = true
     }
 
     async play() {
-        await sound.playAsync();
+        if (loaded & !playing) {
+            await sound.playAsync();
+            playing = true;
+            stopped = false;
+        }
     }
 
     async pause() {
-        await sound.pauseAsync();
+        if (loaded & playing) {
+            await sound.pauseAsync();
+            stopped, playing = false;
+        } 
+        
     }
 
     async stop() {
-        await sound.stopAsync();
+        if (loaded & !stopped) {
+            await sound.stopAsync();
+            stopped = true;
+            playing = false;
+        }
+        
     }
 
-    async unload() {
-        await sound.unloadAsync();
+    async unload() {    
+        if (loaded) {
+            await sound.unloadAsync();
+            loaded = false;    
+        } 
     }
 }
