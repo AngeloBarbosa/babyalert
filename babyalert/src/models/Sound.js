@@ -1,26 +1,18 @@
 import { Audio } from 'expo-av';
 
+const playing = false;
+const stopped = true;
 
 export class SoundAlert {
 
     constructor() {
         const sound = new Audio.Sound();
         sound.loadAsync(require('../assets/sounds/el_carnaval_de_arlequin.mp3'));
-        const loaded = false;
-        const playing = false;
-        const stopped = true;
     }
 
-    async load(path = '../assets/sounds/el_carnaval_de_arlequin.mp3') {
-        await sound.loadAsync(require(path));
-        if (!loaded) {
-            loaded = true;
-            stopped = true;
-        }
-    }
 
     async play() {
-        if (loaded & !playing) {
+        if (!playing) {
             await sound.playAsync();
             playing = true;
             stopped = false;
@@ -28,7 +20,7 @@ export class SoundAlert {
     }
 
     async pause() {
-        if (loaded & playing) {
+        if (playing) {
             await sound.pauseAsync();
             stopped, playing = false;
         } 
@@ -36,7 +28,7 @@ export class SoundAlert {
     }
 
     async stop() {
-        if (loaded & !stopped) {
+        if (!stopped) {
             await sound.stopAsync();
             stopped = true;
             playing = false;
@@ -44,10 +36,4 @@ export class SoundAlert {
         
     }
 
-    async unload() {    
-        if (loaded) {
-            await sound.unloadAsync();
-            loaded = false;    
-        } 
-    }
 }
