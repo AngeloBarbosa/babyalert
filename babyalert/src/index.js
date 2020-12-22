@@ -9,13 +9,13 @@ import { getPermissionsAsync } from 'expo-av/build/Audio';
 const vibe = new Vibrator();
 const sound = new SoundAlert();
 
-function turnSignalsOn() {
-  sound.play();
+async function turnSignalsOn() {
+  await sound.play();
 	vibe.vibratePatternUntilCancel();
 }
 
 function turnSignalsOff() {
-  sound.pause();
+  await sound.pause();
 	vibe.cancel();
 }
 
