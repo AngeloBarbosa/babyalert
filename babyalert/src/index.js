@@ -14,7 +14,7 @@ async function turnSignalsOn() {
 	vibe.vibratePatternUntilCancel();
 }
 
-function turnSignalsOff() {
+async function turnSignalsOff() {
   await sound.pause();
 	vibe.cancel();
 }
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   Center:{
     paddingTop: 100,
     alignItems: 'center',
-    justifyContent: 'center',  
+    justifyContent: 'center',
   },
 
   btnSimple:{
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   txtScreen: {
     marginBottom: 5,
   },
-  
+
 })
 
 function App() {

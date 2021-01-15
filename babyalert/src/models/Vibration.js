@@ -1,25 +1,26 @@
 import {Vibration} from 'react-native';
 
 export class Vibrator {
-    constructor() {
-        const ONE_SECOND_IN_MS = 1000;
-        const PATTERN = [300, 150];
+  ONE_SECOND_IN_MS = 1000;
+  PATTERN = [
+    1 * this.ONE_SECOND_IN_MS,
+    2 * this.ONE_SECOND_IN_MS,
+    3 * this.ONE_SECOND_IN_MS
+  ];
 
-    }
+  vibrate(time, repeat = false) {
+    Vibration.vibrate(this.ONE_SECOND_IN_MS*time, repeat);
+  }
 
-    vibrate(time, repeat = false) {
-        Vibration.vibrate(ONE_SECOND_IN_MS*time, repeat);
-    }
+  vibratePattern(PATTERN, repeat = false) {
+    Vibration.vibrate(this.PATTERN, false);
+  }
 
-    vibratePattern(PATTERN, repeat = false) {
-        Vibration.vibrate(PATTERN, false);
-    }
+  vibratePatternUntilCancel(pattern, repeat = true) {
+    Vibration.vibrate(this.PATTERN, true);
+  }
 
-    vibratePatternUntilCancel(PATTERN, repeat = true) {
-        Vibration.vibrate(PATTERN, true);
-    }
-
-    cancel() {
-        Vibration.cancel();
-    }
+  cancel() {
+    Vibration.cancel();
+  }
 }
